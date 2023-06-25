@@ -1,4 +1,8 @@
+"use client";
+
+import Navigation from "@/components/navigation/Navigation";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 
 export const metadata = {
   title: "Moekana",
@@ -12,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="">{children}</body>
+      <body className="">
+        <ThemeProvider attribute="class">
+          <Navigation />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
