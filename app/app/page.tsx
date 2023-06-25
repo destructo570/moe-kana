@@ -32,10 +32,9 @@ const Page: React.FC = () => {
 
   return (
     <main className="min-h-screen flex flex-col items-center p-6">
-      <h1 className="text-2xl font-bold">Moe Kana</h1>
       <section className="mt-12 mb-12 w-full">
         <div className="flex justify-end">
-          <h3 className="px-4 py-2 bg-slate-200 font-bold rounded-lg">{`${session.right_answer_count}/${session.total_answer_count}`}</h3>
+          <h3 className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 font-bold rounded-lg">{`${session.right_answer_count}/${session.total_answer_count}`}</h3>
         </div>
         <Header updateSession={updateSessionHandler} />
       </section>
