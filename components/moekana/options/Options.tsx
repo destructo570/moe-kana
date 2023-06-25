@@ -8,12 +8,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import React, { useState } from "react";
-import { Settings2 } from "lucide-react";
+import { Settings2, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { DEFAULT_SETTINGS_STATE } from "@/lib/constants";
 import { getClonedObject } from "@/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface OptionsProps {
   onConfirm: (options: number[]) => void;
@@ -68,6 +69,16 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
     setOpen(value);
   };
 
+  const isConfirmDisabled = (selected_options: SettingsObject[]) => {
+    let count = 0;
+    selected_options.forEach((item) => {
+      if (item.checked) {
+        count++;
+      }
+    });
+    return count === 0;
+  };
+
   return (
     <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogTrigger>
@@ -106,9 +117,22 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
               </>
             );
           })}
+          {isConfirmDisabled(selected_options) ? (
+            <Alert className="dark:bg-zinc-700 bg-zinc-100 border-none mt-2">
+              <Info className="h-4 w-4 " />
+              <AlertDescription>
+                Please select atleast one group.
+              </AlertDescription>
+            </Alert>
+          ) : null}
         </DialogDescription>
         <DialogFooter>
-          <Button onClick={onConfirmHandler}>Confirm</Button>
+          <Button
+            onClick={onConfirmHandler}
+            disabled={isConfirmDisabled(selected_options)}
+          >
+            Confirm
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
