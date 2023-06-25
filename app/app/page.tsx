@@ -45,7 +45,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center p-6">
+    <main className="min-h-screen flex flex-col items-center p-6 max-w-6xl mx-auto">
       <section className="mt-12 mb-12 w-full">
         <div className="flex justify-between">
           <Options onConfirm={updateSettings} />
