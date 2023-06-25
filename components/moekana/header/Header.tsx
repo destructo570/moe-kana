@@ -33,6 +33,8 @@ const Header: React.FC<HeaderProps> = ({ updateSession, current_session }) => {
   }, [selected_chars]);
 
   const createNewBoard = (length: number) => {
+    if (!length) return;
+
     let answer_index = getRandomNumber(length);
     let options_index_list: number[] = getRandomNumber(
       length,

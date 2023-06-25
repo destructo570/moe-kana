@@ -12,7 +12,7 @@ import { Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
-import { Characters, DEFAULT_SETTINGS_STATE } from "@/lib/constants";
+import { DEFAULT_SETTINGS_STATE } from "@/lib/constants";
 
 interface OptionsProps {
   onConfirm: (options: number[]) => void;

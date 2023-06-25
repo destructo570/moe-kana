@@ -2,8 +2,6 @@
 
 import React, { useCallback, useState } from "react";
 import Header from "@/components/moekana/header/Header";
-import { Toggle } from "@/components/ui/toggle";
-import { Settings2 } from "lucide-react";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import { getSelectedOptions } from "@/lib/utils";
 import Options from "@/components/moekana/options/Options";
@@ -37,13 +35,12 @@ const Page: React.FC = () => {
 
   const updateSettings = (options: number[]) => {
     const selected_options = getSelectedOptions(options);
-    setSession((prev) => {
-      return {
-        ...prev,
-        settings: {
-          selected_options,
-        },
-      };
+    setSession({
+      right_answer_count: 0,
+      total_answer_count: 0,
+      settings: {
+        selected_options,
+      },
     });
   };
 
