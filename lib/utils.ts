@@ -1,5 +1,11 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import {
+  Characters,
+  HIRAGANA,
+  HIRAGANA_COMBINATIONS,
+  KATAKANA,
+} from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -46,4 +52,27 @@ function shuffleArray(array: number[]) {
     array[i] = array[j];
     array[j] = temp;
   }
+}
+
+export function getSelectedOptions(options: number[]) {
+  let result: KanaGroup[] = [];
+  options.forEach((item) => {
+    switch (item) {
+      case Characters.HIRAGANA:
+        result.push(HIRAGANA);
+        break;
+      case Characters.HIRAGANA_COMBINATION:
+        result.push(HIRAGANA_COMBINATIONS);
+        break;
+      case Characters.KATAKANA:
+        result.push(KATAKANA);
+        break;
+      case Characters.KATAKANA_COMBINATION:
+        result.push(HIRAGANA_COMBINATIONS);
+        break;
+      default:
+        break;
+    }
+  });
+  return result;
 }

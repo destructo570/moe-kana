@@ -2,10 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HIRAGANA } from "@/lib/constants";
 import { generateSelectedCharList, getRandomNumber } from "@/lib/utils";
+import { GameSession } from "@/models/interfaces/GameSession.interface";
 import React, { useEffect, useState } from "react";
 
 interface HeaderProps {
   updateSession: (is_right_answer: boolean) => void;
+  current_session: GameSession;
 }
 
 interface Board {
@@ -13,13 +15,15 @@ interface Board {
   options: Kana[];
 }
 
-const Header: React.FC<HeaderProps> = ({ updateSession }) => {
+const Header: React.FC<HeaderProps> = ({ updateSession, current_session }) => {
   const [current_board, setCurrentBoard] = useState<Board>();
   const [selected_chars, setSelectedChars] = useState<Kana[]>([]);
 
   useEffect(() => {
-    setSelectedChars(generateSelectedCharList([HIRAGANA]));
-  }, []);
+    setSelectedChars(
+      generateSelectedCharList(current_session.settings.selected_options)
+    );
+  }, [current_session.settings.selected_options]);
 
   useEffect(() => {
     if (selected_chars?.length) {

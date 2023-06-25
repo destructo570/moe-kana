@@ -1,3 +1,10 @@
+export enum Characters {
+  HIRAGANA,
+  KATAKANA,
+  HIRAGANA_COMBINATION,
+  KATAKANA_COMBINATION,
+}
+
 export const HIRAGANA: KanaGroup = {
   vowels: [
     { char: "a", char_jp: "あ" },
@@ -205,3 +212,171 @@ export const KATAKANA: KanaGroup = {
   ],
   other: [{ char: "n", char_jp: "ン" }],
 };
+
+export const HIRAGANA_COMBINATIONS: KanaGroup = {
+  k_comb: [
+    { char: "kya", char_jp: "きゃ" },
+    { char: "kyu", char_jp: "きゅ" },
+    { char: "kyo", char_jp: "きょ" },
+  ],
+  s_comb: [
+    { char: "sha", char_jp: "しゃ" },
+    { char: "shu", char_jp: "しゅ" },
+    { char: "sho", char_jp: "しょ" },
+  ],
+  t_comb: [
+    { char: "cha", char_jp: "ちゃ" },
+    { char: "chu", char_jp: "ちゅ" },
+    { char: "cho", char_jp: "ちょ" },
+  ],
+  n_comb: [
+    { char: "nya", char_jp: "にゃ" },
+    { char: "nyu", char_jp: "にゅ" },
+    { char: "nyo", char_jp: "にょ" },
+  ],
+  h_comb: [
+    { char: "hya", char_jp: "ひゃ" },
+    { char: "hyu", char_jp: "ひゅ" },
+    { char: "hyo", char_jp: "ひょ" },
+  ],
+  m_comb: [
+    { char: "mya", char_jp: "みゃ" },
+    { char: "myu", char_jp: "みゅ" },
+    { char: "myo", char_jp: "みょ" },
+  ],
+  r_comb: [
+    { char: "rya", char_jp: "りゃ" },
+    { char: "ryu", char_jp: "りゅ" },
+    { char: "ryo", char_jp: "りょ" },
+  ],
+  g_comb: [
+    { char: "gya", char_jp: "ぎゃ" },
+    { char: "gyu", char_jp: "ぎゅ" },
+    { char: "gyo", char_jp: "ぎょ" },
+  ],
+  z_comb: [
+    { char: "ja", char_jp: "じゃ" },
+    { char: "ju", char_jp: "じゅ" },
+    { char: "jo", char_jp: "じょ" },
+  ],
+  d_comb: [
+    { char: "ja", char_jp: "ぢゃ" },
+    { char: "ju", char_jp: "ぢゅ" },
+    { char: "jo", char_jp: "ぢょ" },
+  ],
+  b_comb: [
+    { char: "bya", char_jp: "びゃ" },
+    { char: "byu", char_jp: "びゅ" },
+    { char: "byo", char_jp: "びょ" },
+  ],
+  p_comb: [
+    { char: "pya", char_jp: "ぴゃ" },
+    { char: "pyu", char_jp: "ぴゅ" },
+    { char: "pyo", char_jp: "ぴょ" },
+  ],
+};
+
+export const KATAKANA_COMBINATIONS: KanaGroup = {
+  k_comb: [
+    { char: "kya", char_jp: "キャ" },
+    { char: "kyu", char_jp: "キュ" },
+    { char: "kyo", char_jp: "キョ" },
+  ],
+  s_comb: [
+    { char: "sha", char_jp: "シャ" },
+    { char: "shu", char_jp: "シュ" },
+    { char: "sho", char_jp: "ショ" },
+  ],
+  t_comb: [
+    { char: "cha", char_jp: "チャ" },
+    { char: "chu", char_jp: "チュ" },
+    { char: "cho", char_jp: "チョ" },
+  ],
+  n_comb: [
+    { char: "nya", char_jp: "ニャ" },
+    { char: "nyu", char_jp: "ニュ" },
+    { char: "nyo", char_jp: "ニョ" },
+  ],
+  h_comb: [
+    { char: "hya", char_jp: "ヒャ" },
+    { char: "hyu", char_jp: "ヒュ" },
+    { char: "hyo", char_jp: "ヒョ" },
+  ],
+  m_comb: [
+    { char: "mya", char_jp: "ミャ" },
+    { char: "myu", char_jp: "ミュ" },
+    { char: "myo", char_jp: "ミョ" },
+  ],
+  r_comb: [
+    { char: "rya", char_jp: "リャ" },
+    { char: "ryu", char_jp: "リュ" },
+    { char: "ryo", char_jp: "リョ" },
+  ],
+  g_comb: [
+    { char: "gya", char_jp: "ギャ" },
+    { char: "gyu", char_jp: "ギュ" },
+    { char: "gyo", char_jp: "ギョ" },
+  ],
+  z_comb: [
+    { char: "ja", char_jp: "ジャ" },
+    { char: "ju", char_jp: "ジュ" },
+    { char: "jo", char_jp: "ジョ" },
+  ],
+  d_comb: [
+    { char: "ja", char_jp: "ヂャ" },
+    { char: "ju", char_jp: "ヂュ" },
+    { char: "jo", char_jp: "ヂョ" },
+  ],
+  b_comb: [
+    { char: "bya", char_jp: "ビャ" },
+    { char: "byu", char_jp: "ビュ" },
+    { char: "byo", char_jp: "ビョ" },
+  ],
+  p_comb: [
+    { char: "pya", char_jp: "ピャ" },
+    { char: "pyu", char_jp: "ピュ" },
+    { char: "pyo", char_jp: "ピョ" },
+  ],
+};
+
+export const DEFAULT_SETTINGS_STATE = [
+  {
+    id: "hiragana-check",
+    type: Characters.HIRAGANA,
+    label: "Hiragana",
+    description:
+      "Basic set of Hiragana characters, including vowels (a, i, u, e, o) and all consonants (ka, ki, ku, ke, ko)",
+    checked: true,
+  },
+  {
+    id: "hiragana-comb-check",
+    type: Characters.HIRAGANA_COMBINATION,
+    label: "Hiragana Combinations",
+    description:
+      "Combinations of Hiragana characters, such as kya, sha, cha, nya, hya, mya, rya, gya, ja, bya, and pya",
+    checked: true,
+  },
+  {
+    id: "katakana-comb-check",
+    type: Characters.KATAKANA,
+    label: "Katakana",
+    description:
+      "Basic set of Katakana characters, including vowels (a, i, u, e, o) and all consonants (ka, ki, ku, ke, ko)",
+    checked: true,
+  },
+  {
+    id: "katakana-check",
+    type: Characters.KATAKANA_COMBINATION,
+    label: "Katakana Combinations",
+    description:
+      "Combinations of Katakana characters, such as kya, sha, cha, nya, hya, mya, rya, gya, ja, bya, and pya",
+    checked: true,
+  },
+];
+
+export const DEFAULT_SELECTED_KANA_GROUPS = [
+  HIRAGANA,
+  HIRAGANA_COMBINATIONS,
+  KATAKANA,
+  KATAKANA_COMBINATIONS,
+];
