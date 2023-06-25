@@ -54,7 +54,7 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
       <DialogTrigger>
         <Settings2 />
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="dark:bg-zinc-800 dark:border-none">
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
         </DialogHeader>
@@ -81,7 +81,9 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
                     </p>
                   </div>
                 </div>
-                {index < selected_options.length - 1 && <Separator />}
+                {index < selected_options.length - 1 && (
+                  <Separator className="dark:bg-zinc-700" />
+                )}
               </>
             );
           })}

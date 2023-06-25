@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ updateSession, current_session }) => {
   };
 
   return (
-    <Card className="dark:bg-zinc-800 flex flex-col items-center p-6 mt-4 dark:border-none">
+    <Card className="dark:bg-zinc-800 dark:border-none flex flex-col items-center p-6 mt-4">
       <h3 className="text-8xl font-medium">{current_board?.answer?.char_jp}</h3>
       <div className="grid grid-cols-3 gap-4 mt-8 w-full">
         {current_board &&
