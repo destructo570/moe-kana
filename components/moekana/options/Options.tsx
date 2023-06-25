@@ -13,44 +13,63 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { DEFAULT_SETTINGS_STATE } from "@/lib/constants";
+import { getClonedObject } from "@/lib/utils";
 
 interface OptionsProps {
   onConfirm: (options: number[]) => void;
 }
 
+interface SettingsObject {
+  id: string;
+  type: number;
+  label: string;
+  description: string;
+  checked: boolean;
+}
+
 const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
   const [open, setOpen] = useState(false);
-  const [selected_options, setSelectedOptions] = useState([
-    ...DEFAULT_SETTINGS_STATE,
-  ]);
+  const [selected_options, setSelectedOptions] = useState<SettingsObject[]>(
+    getClonedObject(DEFAULT_SETTINGS_STATE)
+  );
+  const [old_selected_options, setOldSelectedOptions] = useState<
+    SettingsObject[]
+  >(getClonedObject(DEFAULT_SETTINGS_STATE));
 
-  const onOpenChange = (value: boolean) => {
-    if (!value) {
-      saveSelectedOptions();
-    }
-    setOpen(value);
+  const onConfirmHandler = () => {
+    saveSelectedOptions();
+    setOpen(false);
   };
 
   const saveSelectedOptions = () => {
     if (selected_options?.length) {
       const checked_options = selected_options.filter((item) => item.checked);
+      setOldSelectedOptions(getClonedObject(selected_options));
       onConfirm(checked_options.map((item) => item.type));
     }
   };
 
   const onCheckboxChange = (id: string, value: boolean | "indeterminate") => {
     setSelectedOptions((prev) => {
-      return prev.map((item) => {
+      let new_list = prev.map((item) => {
         if (item.id === id && value !== "indeterminate") {
           item.checked = value;
         }
         return item;
       });
+      return [...new_list];
     });
   };
 
+  const openChangeHandler = (value: boolean) => {
+    if (!value) {
+      setSelectedOptions(getClonedObject(old_selected_options));
+    }
+    setOpen(value);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogTrigger>
         <Settings2 />
       </DialogTrigger>
@@ -89,7 +108,7 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
           })}
         </DialogDescription>
         <DialogFooter>
-          <Button onClick={onOpenChange.bind(null, false)}>Confirm</Button>
+          <Button onClick={onConfirmHandler}>Confirm</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

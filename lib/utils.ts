@@ -76,3 +76,7 @@ export function getSelectedOptions(options: number[]) {
   });
   return result;
 }
+
+export function getClonedObject(obj: object) {
+  return JSON.parse(JSON.stringify(obj));
+}
