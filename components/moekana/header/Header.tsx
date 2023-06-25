@@ -36,9 +36,7 @@ const Header: React.FC<HeaderProps> = ({ updateSession }) => {
       answer_index as number
     ) as number[];
     let options: Kana[] = [];
-    if (Array.isArray(options_index_list) && options_index_list?.length) {
-      options = options_index_list.map((num) => selected_chars[num]);
-    }
+    options = options_index_list.map((num) => selected_chars[num]);
 
     setCurrentBoard({
       answer: selected_chars[answer_index as number],
