@@ -1,3 +1,5 @@
+import { RouteItem } from "@/models/interfaces/Route.interface";
+
 export enum Characters {
   HIRAGANA,
   KATAKANA,
@@ -379,4 +381,19 @@ export const DEFAULT_SELECTED_KANA_GROUPS = [
   HIRAGANA_COMBINATIONS,
   KATAKANA,
   KATAKANA_COMBINATIONS,
+];
+
+export const ROUTES_LIST: RouteItem[] = [
+  {
+    route: "learn",
+    title: "Learn Kana",
+  },
+  {
+    route: "app",
+    title: "MoeKana",
+  },
+  {
+    route: "about",
+    title: "About",
+  },
 ];
