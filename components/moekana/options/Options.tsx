@@ -84,7 +84,10 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
       <DialogTrigger>
         <Settings2 />
       </DialogTrigger>
-      <DialogContent className="dark:bg-zinc-800 dark:border-none">
+      <DialogContent
+        className="dark:bg-zinc-800 dark:border-none"
+        close_btn={false}
+      >
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
         </DialogHeader>
