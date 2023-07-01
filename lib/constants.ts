@@ -92,17 +92,17 @@ export const HIRAGANA: KanaGroup = {
     { char: "me", char_jp: "め" },
     { char: "mo", char_jp: "も" },
   ],
-  y_col: [
-    { char: "ya", char_jp: "や" },
-    { char: "yu", char_jp: "ゆ" },
-    { char: "yo", char_jp: "よ" },
-  ],
   r_col: [
     { char: "ra", char_jp: "ら" },
     { char: "ri", char_jp: "り" },
     { char: "ru", char_jp: "る" },
     { char: "re", char_jp: "れ" },
     { char: "ro", char_jp: "ろ" },
+  ],
+  y_col: [
+    { char: "ya", char_jp: "や" },
+    { char: "yu", char_jp: "ゆ" },
+    { char: "yo", char_jp: "よ" },
   ],
   w_col: [
     { char: "wa", char_jp: "わ" },
@@ -196,17 +196,17 @@ export const KATAKANA: KanaGroup = {
     { char: "me", char_jp: "メ" },
     { char: "mo", char_jp: "モ" },
   ],
-  y_col: [
-    { char: "ya", char_jp: "ヤ" },
-    { char: "yu", char_jp: "ユ" },
-    { char: "yo", char_jp: "ヨ" },
-  ],
   r_col: [
     { char: "ra", char_jp: "ラ" },
     { char: "ri", char_jp: "リ" },
     { char: "ru", char_jp: "ル" },
     { char: "re", char_jp: "レ" },
     { char: "ro", char_jp: "ロ" },
+  ],
+  y_col: [
+    { char: "ya", char_jp: "ヤ" },
+    { char: "yu", char_jp: "ユ" },
+    { char: "yo", char_jp: "ヨ" },
   ],
   w_col: [
     { char: "wa", char_jp: "ワ" },
