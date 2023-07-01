@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider attribute="class">
           <Navigation />
-          {children}
+          <main className="p-6 max-w-6xl mx-auto">{children}</main>
         </ThemeProvider>
       </body>
     </html>

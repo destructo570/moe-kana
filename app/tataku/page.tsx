@@ -59,35 +59,33 @@ const Page: React.FC = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center p-6 max-w-6xl mx-auto">
-      <section className="mt-12 mb-12 w-full">
-        <div className="flex justify-between">
-          <Settings onConfirm={updateSettings} />
-          <div className="flex items-center gap-4">
-            <ConfirmationDialog
-              is_active={reset_dialog}
-              title="Reset board?"
-              body="Are you sure you want to reset the board?"
-              onConfirm={resetSession}
-              onCancel={() => setResetDialog(false)}
-              dialog_trigger={
-                <RotateCcw
-                  className="hover:cursor-pointer"
-                  onClick={() => setResetDialog(true)}
-                />
-              }
-            />
+    <section className="mt-12 mb-12 w-full">
+      <div className="flex justify-between">
+        <Settings onConfirm={updateSettings} />
+        <div className="flex items-center gap-4">
+          <ConfirmationDialog
+            is_active={reset_dialog}
+            title="Reset board?"
+            body="Are you sure you want to reset the board?"
+            onConfirm={resetSession}
+            onCancel={() => setResetDialog(false)}
+            dialog_trigger={
+              <RotateCcw
+                className="hover:cursor-pointer"
+                onClick={() => setResetDialog(true)}
+              />
+            }
+          />
 
-            <h3 className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 font-bold rounded-lg">{`${session.right_answer_count}/${session.total_answer_count}`}</h3>
-          </div>
+          <h3 className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 font-bold rounded-lg">{`${session.right_answer_count}/${session.total_answer_count}`}</h3>
         </div>
-        <GameBoard
-          updateSession={updateSessionHandler}
-          current_session={session}
-          is_reset={is_reset}
-        />
-      </section>
-    </main>
+      </div>
+      <GameBoard
+        updateSession={updateSessionHandler}
+        current_session={session}
+        is_reset={is_reset}
+      />
+    </section>
   );
 };
 

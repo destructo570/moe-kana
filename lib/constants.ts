@@ -389,7 +389,7 @@ export const ROUTES_LIST: RouteItem[] = [
     title: "Learn Kana",
   },
   {
-    route: "/app",
+    route: "/tataku",
     title: "MoeKana",
   },
   {
