@@ -59,8 +59,6 @@ interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
   close_btn?: boolean;
-  close_btn_height?: string;
-  close_btn_width?: string;
 }
 
 const SheetContent = React.forwardRef<
@@ -68,15 +66,7 @@ const SheetContent = React.forwardRef<
   SheetContentProps
 >(
   (
-    {
-      side = "right",
-      className,
-      children,
-      close_btn = true,
-      close_btn_height = "h-4",
-      close_btn_width = "h-4",
-      ...props
-    },
+    { side = "right", className, children, close_btn = true, ...props },
     ref
   ) => (
     <SheetPortal>
@@ -89,7 +79,7 @@ const SheetContent = React.forwardRef<
         {children}
         {close_btn && (
           <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-zinc-100 dark:ring-offset-zinc-950 dark:focus:ring-zinc-800 dark:data-[state=open]:bg-zinc-800">
-            <X className={`${close_btn_height} ${close_btn_width}`} />
+            <X className="h-2 w-2" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}

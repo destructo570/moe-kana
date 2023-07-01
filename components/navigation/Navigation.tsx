@@ -12,7 +12,6 @@ const Navigation: React.FC<NavigationProps> = () => {
   return (
     <nav className="flex justify-between py-4 px-6">
       <SideMenu />
-      <p className="font-bold text-xl">MoeKana</p>
       <Toggle
         onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
         className="dark:bg-zinc-800 "

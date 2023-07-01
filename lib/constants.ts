@@ -390,7 +390,7 @@ export const ROUTES_LIST: RouteItem[] = [
   },
   {
     route: "/tataku",
-    title: "MoeKana",
+    title: "Tataku",
   },
   {
     route: "/about",

@@ -1,11 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { RouteItem } from "@/models/interfaces/Route.interface";
 import { Toggle } from "../ui/toggle";
 import { ROUTES_LIST } from "@/lib/constants";
 import { usePathname, useRouter } from "next/navigation";
+import { X } from "lucide-react";
 
 interface SideMenuProps {}
 
@@ -29,7 +36,11 @@ const SideMenu: React.FC<SideMenuProps> = () => {
       <SheetTrigger asChild>
         <Menu className="hover:cursor-pointer" />
       </SheetTrigger>
-      <SheetContent side="left" close_btn_height="h-6" close_btn_width="w-6">
+      <SheetContent side="left" close_btn={false}>
+        <SheetHeader className="flex flex-row justify-between">
+          <SheetTitle>MoeKana</SheetTitle>
+          <X className="h-6 w-6" onClick={toggleOpenState} />
+        </SheetHeader>
         <div className="grid gap-4 py-4 mt-10">
           {ROUTES_LIST?.map((item, idx) => {
             return (
