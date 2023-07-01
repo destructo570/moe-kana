@@ -8,6 +8,7 @@ import { Volume1 } from "lucide-react";
 interface GameBoardProps {
   updateSession: (is_right_answer: boolean) => void;
   current_session: GameSession;
+  is_reset: boolean;
 }
 
 interface Board {
@@ -18,6 +19,7 @@ interface Board {
 const GameBoard: React.FC<GameBoardProps> = ({
   updateSession,
   current_session,
+  is_reset,
 }) => {
   const [current_board, setCurrentBoard] = useState<Board>();
   const [selected_chars, setSelectedChars] = useState<Kana[]>([]);
@@ -34,7 +36,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
       createNewBoard(selected_chars?.length);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected_chars]);
+  }, [selected_chars, is_reset]);
 
   const createNewBoard = (length: number) => {
     if (!length) return;
