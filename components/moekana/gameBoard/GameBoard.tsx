@@ -5,7 +5,7 @@ import { GameSession } from "@/models/interfaces/GameSession.interface";
 import React, { useEffect, useRef, useState } from "react";
 import { Volume1 } from "lucide-react";
 
-interface HeaderProps {
+interface GameBoardProps {
   updateSession: (is_right_answer: boolean) => void;
   current_session: GameSession;
 }
@@ -15,7 +15,10 @@ interface Board {
   options: Kana[];
 }
 
-const Header: React.FC<HeaderProps> = ({ updateSession, current_session }) => {
+const GameBoard: React.FC<GameBoardProps> = ({
+  updateSession,
+  current_session,
+}) => {
   const [current_board, setCurrentBoard] = useState<Board>();
   const [selected_chars, setSelectedChars] = useState<Kana[]>([]);
   const audio_ref = useRef<HTMLAudioElement>(null);
@@ -102,4 +105,4 @@ const Header: React.FC<HeaderProps> = ({ updateSession, current_session }) => {
   );
 };
 
-export default Header;
+export default GameBoard;

@@ -14,9 +14,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { DEFAULT_SETTINGS_STATE } from "@/lib/constants";
 import { getClonedObject } from "@/lib/utils";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
-interface OptionsProps {
+interface SettingsProps {
   onConfirm: (options: number[]) => void;
 }
 
@@ -28,7 +28,7 @@ interface SettingsObject {
   checked: boolean;
 }
 
-const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
+const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
   const [open, setOpen] = useState(false);
   const [selected_options, setSelectedOptions] = useState<SettingsObject[]>(
     getClonedObject(DEFAULT_SETTINGS_STATE)
@@ -142,4 +142,4 @@ const Options: React.FC<OptionsProps> = ({ onConfirm }) => {
   );
 };
 
-export default Options;
+export default Settings;

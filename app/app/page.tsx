@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import Header from "@/components/moekana/header/Header";
+import GameBoard from "@/components/moekana/gameBoard/GameBoard";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import { getSelectedOptions } from "@/lib/utils";
-import Options from "@/components/moekana/options/Options";
+import Settings from "@/components/moekana/settings/Settings";
 import { DEFAULT_SELECTED_KANA_GROUPS } from "@/lib/constants";
 
 const Page: React.FC = () => {
@@ -48,10 +48,10 @@ const Page: React.FC = () => {
     <main className="min-h-screen flex flex-col items-center p-6 max-w-6xl mx-auto">
       <section className="mt-12 mb-12 w-full">
         <div className="flex justify-between">
-          <Options onConfirm={updateSettings} />
+          <Settings onConfirm={updateSettings} />
           <h3 className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 font-bold rounded-lg">{`${session.right_answer_count}/${session.total_answer_count}`}</h3>
         </div>
-        <Header
+        <GameBoard
           updateSession={updateSessionHandler}
           current_session={session}
         />
