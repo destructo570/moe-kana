@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import GameBoard from "@/components/moekana/gameBoard/GameBoard";
+import GameBoard from "@/components/tataku/gameBoard/GameBoard";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import { getSelectedOptions } from "@/lib/utils";
-import Settings from "@/components/moekana/settings/Settings";
+import Settings from "@/components/tataku/settings/Settings";
 import { DEFAULT_SELECTED_KANA_GROUPS } from "@/lib/constants";
 import { RotateCcw } from "lucide-react";
 import ConfirmationDialog from "@/components/reusable/ConfirmationDialog";
