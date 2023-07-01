@@ -385,15 +385,15 @@ export const DEFAULT_SELECTED_KANA_GROUPS = [
 
 export const ROUTES_LIST: RouteItem[] = [
   {
-    route: "learn",
+    route: "/learn-kana",
     title: "Learn Kana",
   },
   {
-    route: "app",
+    route: "/app",
     title: "MoeKana",
   },
   {
-    route: "about",
+    route: "/about",
     title: "About",
   },
 ];

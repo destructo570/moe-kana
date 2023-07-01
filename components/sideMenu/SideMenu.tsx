@@ -5,18 +5,18 @@ import { Menu } from "lucide-react";
 import { RouteItem } from "@/models/interfaces/Route.interface";
 import { Toggle } from "../ui/toggle";
 import { ROUTES_LIST } from "@/lib/constants";
+import { usePathname, useRouter } from "next/navigation";
 
-interface SideMenuProps {
-  active_route: string;
-  updateRoute: (new_route: string) => void;
-}
+interface SideMenuProps {}
 
-const SideMenu: React.FC<SideMenuProps> = (props) => {
+const SideMenu: React.FC<SideMenuProps> = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [is_open, setIsOpen] = useState(false);
-  const { active_route, updateRoute } = props;
 
   const onRouteClick = (item: RouteItem) => {
-    updateRoute(item.route);
+    router.push(item.route);
     toggleOpenState();
   };
 
@@ -35,7 +35,7 @@ const SideMenu: React.FC<SideMenuProps> = (props) => {
             return (
               <Toggle
                 key={`route_${idx}`}
-                pressed={active_route === item.route}
+                pressed={pathname.startsWith(item.route)}
                 onPressedChange={onRouteClick.bind(null, item)}
                 className="border-none"
               >

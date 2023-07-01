@@ -4,18 +4,14 @@ import { MoonStar } from "lucide-react";
 import { useTheme } from "next-themes";
 import SideMenu from "../sideMenu/SideMenu";
 
-interface NavigationProps {
-  active_route: string;
-  updateRoute: (new_route: string) => void;
-}
+interface NavigationProps {}
 
-const Navigation: React.FC<NavigationProps> = (props) => {
-  const { active_route, updateRoute } = props;
+const Navigation: React.FC<NavigationProps> = () => {
   const { theme, setTheme } = useTheme();
 
   return (
     <nav className="flex justify-between py-4 px-6">
-      <SideMenu active_route={active_route} updateRoute={updateRoute} />
+      <SideMenu />
       <p className="font-bold text-xl">MoeKana</p>
       <Toggle
         onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}

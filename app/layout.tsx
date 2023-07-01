@@ -16,17 +16,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [active_route, setActiveRoute] = useState("app");
-
-  const updateRoute = (new_route: string) => {
-    setActiveRoute(new_route);
-  };
-
   return (
     <html lang="en">
       <body className={poppins.className}>
         <ThemeProvider attribute="class">
-          <Navigation active_route={active_route} updateRoute={updateRoute} />
+          <Navigation />
           {children}
         </ThemeProvider>
       </body>
