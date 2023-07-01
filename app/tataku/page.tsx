@@ -8,6 +8,7 @@ import Settings from "@/components/moekana/settings/Settings";
 import { DEFAULT_SELECTED_KANA_GROUPS } from "@/lib/constants";
 import { RotateCcw } from "lucide-react";
 import ConfirmationDialog from "@/components/reusable/ConfirmationDialog";
+import { Button } from "@/components/ui/button";
 
 const Page: React.FC = () => {
   const [session, setSession] = useState<GameSession>({
@@ -70,10 +71,12 @@ const Page: React.FC = () => {
             onConfirm={resetSession}
             onCancel={() => setResetDialog(false)}
             dialog_trigger={
-              <RotateCcw
-                className="hover:cursor-pointer"
-                onClick={() => setResetDialog(true)}
-              />
+              <Button variant="ghost" size="icon">
+                <RotateCcw
+                  className="h-6 w-6"
+                  onClick={() => setResetDialog(true)}
+                />
+              </Button>
             }
           />
 

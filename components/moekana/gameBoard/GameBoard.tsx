@@ -75,10 +75,12 @@ const GameBoard: React.FC<GameBoardProps> = ({
     <Card className="dark:bg-zinc-800 dark:border-none flex flex-col items-center p-4 mt-4">
       <div className="flex justify-end w-full">
         <div
-          className="dark:bg-zinc-600 p-2 rounded-md hover:cursor-pointer dark:hover:bg-zinc-500"
+          className="dark:bg-zinc-600 rounded-md hover:cursor-pointer dark:hover:bg-zinc-500"
           onClick={onPlayHandler}
         >
-          <Volume1 />
+          <Button variant="ghost" size="icon">
+            <Volume1 className="h-6 w-6" />
+          </Button>
           <audio
             ref={audio_ref}
             src={`/audio/${current_board?.answer.char}.mp3`}

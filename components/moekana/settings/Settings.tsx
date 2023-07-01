@@ -82,7 +82,9 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
   return (
     <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogTrigger>
-        <Settings2 />
+        <Button variant="ghost" size="icon">
+          <Settings2 className="h-6 w-6" />
+        </Button>
       </DialogTrigger>
       <DialogContent
         className="dark:bg-zinc-800 dark:border-none"
