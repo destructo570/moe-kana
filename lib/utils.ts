@@ -6,6 +6,8 @@ import {
   HIRAGANA_COMBINATIONS,
   KATAKANA,
 } from "./constants";
+import { Kana } from "@/models/interfaces/Kana.interface";
+import { KanaGroup } from "@/models/interfaces/KanaGroup.interface";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

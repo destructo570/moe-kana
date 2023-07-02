@@ -10,32 +10,51 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 
-interface ConfirmationDialogProps {
+interface ConfirmationDialogProps extends React.PropsWithChildren {
   is_active: boolean;
+  show_primary_cta?: boolean;
+  show_footer?: boolean;
   title: string;
   body: string;
-  onConfirm: () => void;
-  onCancel: () => void;
-  dialog_trigger: React.ReactElement;
+  classes?: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  dialog_trigger?: React.ReactElement;
 }
 
 const ConfirmationDialog: React.FC<ConfirmationDialogProps> = (props) => {
-  const { is_active, title, body, onConfirm, onCancel, dialog_trigger } = props;
+  const {
+    is_active,
+    title,
+    body,
+    onConfirm,
+    onCancel,
+    dialog_trigger,
+    children,
+    show_footer = true,
+    show_primary_cta = true,
+    classes,
+  } = props;
   return (
-    <Dialog open={is_active}>
+    <Dialog open={is_active} onOpenChange={onCancel}>
       <DialogTrigger>{dialog_trigger}</DialogTrigger>
-      <DialogContent close_btn={false}>
+      <DialogContent
+        close_btn={false}
+        className={`${classes} dark:bg-zinc-800 dark:border-none`}
+      >
         <DialogHeader className="text-left">
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
-        <DialogDescription>{body}</DialogDescription>
+        <DialogDescription>{children ? children : body}</DialogDescription>
 
-        <DialogFooter className="flex flex-row justify-end gap-2">
-          <Button variant="outline" onClick={onCancel}>
-            Cancel
-          </Button>
-          <Button onClick={onConfirm}>Confirm</Button>
-        </DialogFooter>
+        {show_footer && (
+          <DialogFooter className="flex flex-row justify-end gap-2">
+            <Button variant="outline" onClick={onCancel}>
+              Cancel
+            </Button>
+            {show_primary_cta && <Button onClick={onConfirm}>Confirm</Button>}
+          </DialogFooter>
+        )}
       </DialogContent>
     </Dialog>
   );

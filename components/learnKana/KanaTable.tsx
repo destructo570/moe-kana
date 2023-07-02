@@ -1,4 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import KanaDialog from "./KanaDialog";
+import { KanaGroup } from "@/models/interfaces/KanaGroup.interface";
+import { Kana } from "@/models/interfaces/Kana.interface";
 
 interface KanaTableProps {
   kana_group: KanaGroup;
@@ -6,6 +11,7 @@ interface KanaTableProps {
 }
 
 const KanaTable: React.FC<KanaTableProps> = (props) => {
+  const [show_kana, setShowKana] = useState<Kana | null>(null);
   const { kana_group, max_col_count = 5 } = props;
 
   const keys = Object.keys(kana_group);
@@ -16,6 +22,7 @@ const KanaTable: React.FC<KanaTableProps> = (props) => {
     return (
       <div
         key={`${kana.char}_${kana_idx}`}
+        onClick={() => setShowKana(kana)}
         className={`flex flex-col justify-center py-2 gap-3 items-center ${border_r} border-zinc-300 dark:border-zinc-600 hover:dark:bg-zinc-800 hover:bg-zinc-50 hover:cursor-pointer`}
       >
         <span className="font-bold text-xl lg:text-2xl">{kana.char_jp}</span>
@@ -61,6 +68,13 @@ const KanaTable: React.FC<KanaTableProps> = (props) => {
   return (
     <div className="border-x border-b border-zinc-300 dark:border-zinc-600">
       {renderTable()}
+      {show_kana ? (
+        <KanaDialog
+          is_active={show_kana !== null}
+          kana={show_kana}
+          onClose={() => setShowKana(null)}
+        />
+      ) : null}
     </div>
   );
 };

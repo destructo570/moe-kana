@@ -4,6 +4,7 @@ import { generateSelectedCharList, getRandomNumber } from "@/lib/utils";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import React, { useEffect, useRef, useState } from "react";
 import { Volume1 } from "lucide-react";
+import { Kana } from "@/models/interfaces/Kana.interface";
 
 interface GameBoardProps {
   updateSession: (is_right_answer: boolean) => void;
