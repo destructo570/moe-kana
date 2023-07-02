@@ -39,7 +39,10 @@ const SideMenu: React.FC<SideMenuProps> = () => {
       <SheetContent side="left" close_btn={false}>
         <SheetHeader className="flex flex-row justify-between">
           <SheetTitle>MoeKana</SheetTitle>
-          <X className="h-6 w-6" onClick={toggleOpenState} />
+          <X
+            className="h-6 w-6 hover:cursor-pointer"
+            onClick={toggleOpenState}
+          />
         </SheetHeader>
         <div className="grid gap-4 py-4 mt-10">
           {ROUTES_LIST?.map((item, idx) => {
