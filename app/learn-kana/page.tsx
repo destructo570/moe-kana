@@ -15,7 +15,7 @@ const LearnKana = () => {
           <div className="mb-4">
             <h3 className="text-2xl font-bold">Hiragana</h3>
           </div>
-          <KanaTable kana_group={HIRAGANA} />
+          <KanaTable kana_group={HIRAGANA} max_col_count={5} />
         </div>
         <div className="mt-16">
           <div className="mb-4">
@@ -27,7 +27,7 @@ const LearnKana = () => {
           <div className="mb-4">
             <h3 className="text-2xl font-bold">Katakana</h3>
           </div>
-          <KanaTable kana_group={KATAKANA} />
+          <KanaTable kana_group={KATAKANA} max_col_count={5} />
         </div>
         <div className="mt-16">
           <div className="mb-4">
