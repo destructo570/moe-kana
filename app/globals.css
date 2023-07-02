@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Toggle[data-state="on"] {
+  background-color: red;
+  color: var(--violet-12);
+}

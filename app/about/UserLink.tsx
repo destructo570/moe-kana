@@ -13,7 +13,7 @@ interface UserLinkProps {
 const UserLink: React.FC<UserLinkProps> = (props) => {
   const { name, description, link, image } = props;
   return (
-    <Link href={link} className="w-full">
+    <Link href={link} className="w-full" target="_blank">
       <Button
         variant="ghost"
         className="w-full h-fit p-4 flex flex-row justify-start rounded-lg hover:dark:bg-zinc-700"

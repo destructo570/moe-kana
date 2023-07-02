@@ -7,10 +7,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { InfoIcon, Joystick, Menu } from "lucide-react";
 import { RouteItem } from "@/models/interfaces/Route.interface";
 import { Toggle } from "../ui/toggle";
-import { ROUTES_LIST } from "@/lib/constants";
+import { GraduationCap } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { X } from "lucide-react";
 
@@ -31,12 +31,34 @@ const SideMenu: React.FC<SideMenuProps> = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const ROUTES_LIST: RouteItem[] = [
+    {
+      route: "/learn-kana",
+      title: "Learn Kana",
+      icon: <GraduationCap className="h-5 w-5" />,
+    },
+    {
+      route: "/tataku",
+      title: "Tataku",
+      icon: <Joystick className="h-5 w-5" />,
+    },
+    {
+      route: "/about",
+      title: "About",
+      icon: <InfoIcon className="h-5 w-5" />,
+    },
+  ];
+
   return (
     <Sheet open={is_open} onOpenChange={toggleOpenState}>
       <SheetTrigger asChild>
         <Menu className="hover:cursor-pointer" />
       </SheetTrigger>
-      <SheetContent side="left" close_btn={false}>
+      <SheetContent
+        side="left"
+        close_btn={false}
+        className="dark:bg-zinc-800 dark:border-none"
+      >
         <SheetHeader className="flex flex-row justify-between">
           <SheetTitle>MoeKana</SheetTitle>
           <X
@@ -51,9 +73,12 @@ const SideMenu: React.FC<SideMenuProps> = () => {
                 key={`route_${idx}`}
                 pressed={pathname.startsWith(item.route)}
                 onPressedChange={onRouteClick.bind(null, item)}
-                className="border-none"
+                className=" dark:data-[state=on]:bg-zinc-700"
               >
-                {item.title}
+                <div className="w-full text-left flex gap-3 items-center">
+                  <span>{item.icon}</span>
+                  <span>{item.title}</span>
+                </div>
               </Toggle>
             );
           })}
