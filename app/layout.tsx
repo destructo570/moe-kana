@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Navigation from "@/components/navigation/Navigation";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
