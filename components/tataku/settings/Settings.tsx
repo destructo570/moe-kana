@@ -12,9 +12,15 @@ import { Settings2, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
-import { DEFAULT_SETTINGS_STATE } from "@/lib/constants";
+import {
+  DEFAULT_GAME_MODE_STATE,
+  DEFAULT_SETTINGS_STATE,
+  TatakuMode,
+} from "@/lib/constants";
 import { getClonedObject } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 interface SettingsProps {
   onConfirm: (options: number[]) => void;
@@ -23,6 +29,7 @@ interface SettingsProps {
 interface SettingsObject {
   id: string;
   type: number;
+  value?: number;
   label: string;
   description: string;
   checked: boolean;
@@ -30,6 +37,7 @@ interface SettingsObject {
 
 const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
   const [open, setOpen] = useState(false);
+  const [selected_mode, setSelectedMode] = useState<string>(TatakuMode.NORMAL);
   const [selected_options, setSelectedOptions] = useState<SettingsObject[]>(
     getClonedObject(DEFAULT_SETTINGS_STATE)
   );
@@ -79,6 +87,10 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
     return count === 0;
   };
 
+  const onModeChange = (value: string) => {
+    setSelectedMode(value);
+  };
+
   return (
     <Dialog open={open} onOpenChange={openChangeHandler}>
       <DialogTrigger>
@@ -94,42 +106,81 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
           <DialogTitle>Settings</DialogTitle>
         </DialogHeader>
         <DialogDescription>
-          {selected_options.map((item, index) => {
-            return (
-              <>
-                <div key={item.id} className="items-top flex space-x-2 p-3">
-                  <Checkbox
-                    id={item.id}
-                    onCheckedChange={onCheckboxChange.bind(null, item.id)}
-                    checked={item.checked}
-                    className="mt-1"
-                  />
-                  <div className="grid gap-1.5 leading-none">
-                    <label
-                      htmlFor={item.id}
-                      className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
-                    >
-                      {item.label}
-                    </label>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
+          <h3 className="mt-2">Selected Mode</h3>
+          <RadioGroup
+            defaultValue={selected_mode}
+            className="ml-2"
+            onValueChange={onModeChange}
+          >
+            {DEFAULT_GAME_MODE_STATE.map((item, index) => {
+              return (
+                <>
+                  <div key={item.id} className="items-top flex space-x-2 p-3">
+                    <RadioGroupItem
+                      id={item.id}
+                      value={item.value}
+                      className="mt-1"
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <label
+                        htmlFor={item.id}
+                        className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
+                      >
+                        {item.label}
+                      </label>
+                      <p className="text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                {index < selected_options.length - 1 && (
-                  <Separator className="dark:bg-zinc-700" />
-                )}
-              </>
-            );
-          })}
-          {isConfirmDisabled(selected_options) ? (
-            <Alert className="dark:bg-zinc-700 bg-zinc-100 border-none mt-2">
-              <Info className="h-4 w-4 " />
-              <AlertDescription>
-                Please select atleast one group.
-              </AlertDescription>
-            </Alert>
-          ) : null}
+                  {index < DEFAULT_GAME_MODE_STATE.length - 1 && (
+                    <Separator className="dark:bg-zinc-700" />
+                  )}
+                </>
+              );
+            })}
+          </RadioGroup>
+          <div className="mt-10">
+            <h3>Selected options</h3>
+            <div className="ml-4">
+              {selected_options.map((item, index) => {
+                return (
+                  <>
+                    <div key={item.id} className="items-top flex space-x-2 p-3">
+                      <Checkbox
+                        id={item.id}
+                        onCheckedChange={onCheckboxChange.bind(null, item.id)}
+                        checked={item.checked}
+                        className="mt-1"
+                      />
+                      <div className="grid gap-1.5 leading-none">
+                        <label
+                          htmlFor={item.id}
+                          className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
+                        >
+                          {item.label}
+                        </label>
+                        <p className="text-sm text-muted-foreground">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                    {index < selected_options.length - 1 && (
+                      <Separator className="dark:bg-zinc-700" />
+                    )}
+                  </>
+                );
+              })}
+              {isConfirmDisabled(selected_options) ? (
+                <Alert className="dark:bg-zinc-700 bg-zinc-100 border-none mt-2">
+                  <Info className="h-4 w-4 " />
+                  <AlertDescription>
+                    Please select atleast one group.
+                  </AlertDescription>
+                </Alert>
+              ) : null}
+            </div>
+          </div>
         </DialogDescription>
         <DialogFooter>
           <Button

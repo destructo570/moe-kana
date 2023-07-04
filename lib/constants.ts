@@ -7,6 +7,11 @@ export enum Characters {
   KATAKANA_COMBINATION,
 }
 
+export enum TatakuMode {
+  NORMAL = "1",
+  KIKUKANA = "2",
+}
+
 export enum KanaType {
   MAIN,
   COMBINATION,
@@ -347,6 +352,25 @@ export const KATAKANA_COMBINATIONS: KanaGroup = {
     { char: "pyo", char_jp: "ピョ", type: KanaType.COMBINATION },
   ],
 };
+
+export const DEFAULT_GAME_MODE_STATE = [
+  {
+    id: "normal-radio",
+    value: TatakuMode.NORMAL,
+    label: "Normal",
+    description:
+      "A Romaji character will be shown and you need to select the correct latin translation.",
+    checked: true,
+  },
+  {
+    id: "kiku-check",
+    value: TatakuMode.KIKUKANA,
+    label: "KikuKana",
+    description:
+      "Hear the japanese pronunciation and select the correct romaji translation.",
+    checked: false,
+  },
+];
 
 export const DEFAULT_SETTINGS_STATE = [
   {
