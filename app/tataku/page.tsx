@@ -5,10 +5,11 @@ import GameBoard from "@/components/tataku/gameBoard/GameBoard";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import { getSelectedOptions } from "@/lib/utils";
 import Settings from "@/components/tataku/settings/Settings";
-import { DEFAULT_SELECTED_KANA_GROUPS } from "@/lib/constants";
+import { DEFAULT_SELECTED_KANA_GROUPS, TatakuMode } from "@/lib/constants";
 import { RotateCcw } from "lucide-react";
 import ConfirmationDialog from "@/components/reusable/ConfirmationDialog";
 import { Button } from "@/components/ui/button";
+import { SelectedSettings } from "@/models/interfaces/SeletedSettings.interface";
 
 const Page: React.FC = () => {
   const [session, setSession] = useState<GameSession>({
@@ -16,6 +17,7 @@ const Page: React.FC = () => {
     total_answer_count: 0,
     settings: {
       selected_options: DEFAULT_SELECTED_KANA_GROUPS,
+      selected_mode: TatakuMode.NORMAL,
     },
   });
   const [reset_dialog, setResetDialog] = useState<boolean>(false);
@@ -38,13 +40,17 @@ const Page: React.FC = () => {
     });
   }, []);
 
-  const updateSettings = (options: number[]) => {
-    const selected_options = getSelectedOptions(options);
+  const updateSettings = (selected_settings: SelectedSettings) => {
+    const selected_options = getSelectedOptions(
+      selected_settings?.checked_options_list
+    );
+    const selected_mode = selected_settings?.selected_mode;
     setSession({
       right_answer_count: 0,
       total_answer_count: 0,
       settings: {
         selected_options,
+        selected_mode,
       },
     });
   };

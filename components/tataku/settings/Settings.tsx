@@ -21,9 +21,10 @@ import { getClonedObject } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { SelectedSettings } from "@/models/interfaces/SeletedSettings.interface";
 
 interface SettingsProps {
-  onConfirm: (options: number[]) => void;
+  onConfirm: (selected_settings: SelectedSettings) => void;
 }
 
 interface SettingsObject {
@@ -37,7 +38,12 @@ interface SettingsObject {
 
 const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
   const [open, setOpen] = useState(false);
-  const [selected_mode, setSelectedMode] = useState<string>(TatakuMode.NORMAL);
+  const [selected_mode, setSelectedMode] = useState<TatakuMode>(
+    TatakuMode.NORMAL
+  );
+  const [old_selected_mode, setOldSelectedMode] = useState<TatakuMode>(
+    TatakuMode.NORMAL
+  );
   const [selected_options, setSelectedOptions] = useState<SettingsObject[]>(
     getClonedObject(DEFAULT_SETTINGS_STATE)
   );
@@ -51,11 +57,14 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
   };
 
   const saveSelectedOptions = () => {
+    let checked_options_list: number[] = [];
     if (selected_options?.length) {
       const checked_options = selected_options.filter((item) => item.checked);
+      checked_options_list = checked_options.map((item) => item.type);
       setOldSelectedOptions(getClonedObject(selected_options));
-      onConfirm(checked_options.map((item) => item.type));
     }
+    setOldSelectedMode(selected_mode);
+    onConfirm({ checked_options_list, selected_mode });
   };
 
   const onCheckboxChange = (id: string, value: boolean | "indeterminate") => {
@@ -73,6 +82,7 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
   const openChangeHandler = (value: boolean) => {
     if (!value) {
       setSelectedOptions(getClonedObject(old_selected_options));
+      setSelectedMode(old_selected_mode);
     }
     setOpen(value);
   };
@@ -87,7 +97,7 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
     return count === 0;
   };
 
-  const onModeChange = (value: string) => {
+  const onModeChange = (value: TatakuMode) => {
     setSelectedMode(value);
   };
 
@@ -122,12 +132,12 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
                       className="mt-1"
                     />
                     <div className="grid gap-1.5 leading-none">
-                      <label
+                      <Label
                         htmlFor={item.id}
                         className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
                       >
                         {item.label}
-                      </label>
+                      </Label>
                       <p className="text-sm text-muted-foreground">
                         {item.description}
                       </p>
@@ -154,12 +164,12 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
                         className="mt-1"
                       />
                       <div className="grid gap-1.5 leading-none">
-                        <label
+                        <Label
                           htmlFor={item.id}
                           className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
                         >
                           {item.label}
-                        </label>
+                        </Label>
                         <p className="text-sm text-muted-foreground">
                           {item.description}
                         </p>
