@@ -76,16 +76,13 @@ const Page: React.FC = () => {
             body="Are you sure you want to reset the board?"
             onConfirm={resetSession}
             onCancel={() => setResetDialog(false)}
-            dialog_trigger={
-              <Button variant="ghost" size="icon">
-                <RotateCcw
-                  className="h-6 w-6"
-                  onClick={() => setResetDialog(true)}
-                />
-              </Button>
-            }
           />
-
+          <Button variant="ghost" size="icon">
+            <RotateCcw
+              className="h-6 w-6"
+              onClick={() => setResetDialog(true)}
+            />
+          </Button>
           <h3 className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 font-bold rounded-lg">{`${session.right_answer_count}/${session.total_answer_count}`}</h3>
         </div>
       </div>

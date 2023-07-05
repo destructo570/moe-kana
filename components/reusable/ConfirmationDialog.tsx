@@ -49,7 +49,11 @@ const ConfirmationDialog: React.FC<ConfirmationDialogProps> = (props) => {
 
         {show_footer && (
           <DialogFooter className="flex flex-row justify-end gap-2">
-            <Button variant="outline" onClick={onCancel}>
+            <Button
+              variant="ghost"
+              onClick={onCancel}
+              className="dark:hover:bg-zinc-700"
+            >
               Cancel
             </Button>
             {show_primary_cta && <Button onClick={onConfirm}>Confirm</Button>}
