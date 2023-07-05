@@ -3,8 +3,9 @@ import { Card } from "@/components/ui/card";
 import { generateSelectedCharList, getRandomNumber } from "@/lib/utils";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import React, { useEffect, useRef, useState } from "react";
-import { Volume1 } from "lucide-react";
+import { Volume1, Volume2 } from "lucide-react";
 import { Kana } from "@/models/interfaces/Kana.interface";
+import { TatakuMode } from "@/lib/constants";
 
 interface GameBoardProps {
   updateSession: (is_right_answer: boolean) => void;
@@ -75,23 +76,35 @@ const GameBoard: React.FC<GameBoardProps> = ({
   return (
     <Card className="dark:bg-zinc-800 dark:border-none flex flex-col items-center p-4 mt-4">
       <div className="flex justify-end w-full">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onPlayHandler}
-          className=" dark:hover:bg-zinc-700"
-        >
-          <Volume1 className="h-6 w-6" />
-        </Button>
+        {current_session?.settings?.selected_mode === TatakuMode.NORMAL && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onPlayHandler}
+            className=" dark:hover:bg-zinc-700"
+          >
+            <Volume1 className="h-6 w-6" />
+          </Button>
+        )}
         <audio
           ref={audio_ref}
           src={`/audio/${current_board?.answer.char}.mp3`}
           hidden
         />
       </div>
-      <h3 className="text-8xl font-medium mt-14">
-        {current_board?.answer?.char_jp}
-      </h3>
+      {current_session?.settings?.selected_mode === TatakuMode.NORMAL ? (
+        <h3 className="text-8xl font-medium mt-14">
+          {current_board?.answer?.char_jp}
+        </h3>
+      ) : (
+        <Button
+          className=" dark:hover:bg-zinc-700 h-24 w-24 mt-14"
+          variant="ghost"
+          onClick={onPlayHandler}
+        >
+          <Volume2 className="h-24 w-24" />
+        </Button>
+      )}
       <div className="grid grid-cols-3 gap-4 mt-14 w-full">
         {current_board &&
           current_board?.options?.length &&
@@ -100,9 +113,15 @@ const GameBoard: React.FC<GameBoardProps> = ({
               key={`kana_${index}`}
               onClick={onClickHandler.bind(null, kana)}
               size="icon"
-              className="h-16 w-full text-xl"
+              className={`h-16 w-full ${
+                current_session?.settings?.selected_mode === TatakuMode.NORMAL
+                  ? "text-xl"
+                  : "text-2xl font-bold"
+              }`}
             >
-              {kana.char}
+              {current_session?.settings?.selected_mode === TatakuMode.NORMAL
+                ? kana.char
+                : kana.char_jp}
             </Button>
           ))}
       </div>
