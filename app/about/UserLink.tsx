@@ -27,7 +27,7 @@ const UserLink: React.FC<UserLinkProps> = (props) => {
         />
         <div className="ml-4">
           <p className="text-md text-left">{name}</p>
-          <p className="text-md text-left text-zinc-400 font-normal">
+          <p className="text-md text-left text-zinc-400 dark:text-zinc-500 font-normal">
             {description}
           </p>
         </div>

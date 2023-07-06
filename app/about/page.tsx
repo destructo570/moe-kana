@@ -19,7 +19,9 @@ const About = () => {
           />
           <div className="flex flex-col align center justify-center mt-4 text-center">
             <p>Vishal Kashi</p>
-            <p className="text-zinc-500 text-sm">Software developer</p>
+            <p className="text-zinc-400 dark:text-zinc-500 text-sm">
+              Software developer
+            </p>
           </div>
         </div>
         <div className="flex gap-4 justify-center mt-6">
