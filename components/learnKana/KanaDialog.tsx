@@ -35,7 +35,7 @@ const KanaDialog: React.FC<KanaDialogProps> = (props) => {
               src={`/images/stroke/${kana?.char_jp}.gif`}
               alt="kana character"
               width={100}
-              height={100}
+              height={75}
             />
           ) : (
             <span className="text-zinc-900 dark:text-zinc-50 text-6xl font-bold">
