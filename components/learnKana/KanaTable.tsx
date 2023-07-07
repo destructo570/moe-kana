@@ -31,12 +31,31 @@ const KanaTable: React.FC<KanaTableProps> = (props) => {
     );
   };
 
+  /**
+   * Render empty cells for rows with fewer than max_col_count items
+   * @param character_list
+   */
+  const renderEmptyCells = (character_list: Kana[]) => {
+    const empty_array = Array.from({
+      length: max_col_count - character_list.length,
+    });
+
+    if (character_list.length < max_col_count) {
+      return empty_array.map((_, empty_index) => (
+        <div
+          key={character_list.length + empty_index}
+          className={` ${
+            empty_index !== empty_array?.length - 1 ? "border-r" : ""
+          } border-zinc-300 dark:border-zinc-600`}
+        ></div>
+      ));
+    }
+    return null;
+  };
+
   const renderTable = () => {
     return keys.map((column: string, col_idx: number) => {
       const character_list = kana_group[column];
-      const empty_array = Array.from({
-        length: max_col_count - character_list.length,
-      });
       return (
         <div
           key={`${column}_${col_idx}`}
@@ -50,16 +69,7 @@ const KanaTable: React.FC<KanaTableProps> = (props) => {
             {character_list?.map((kana, kana_idx) => {
               return renderTableCell(kana, kana_idx, character_list?.length);
             })}
-            {character_list.length < max_col_count &&
-              // Render empty cells for rows with fewer than max_col_count items
-              empty_array.map((_, empty_index) => (
-                <div
-                  key={character_list.length + empty_index}
-                  className={` ${
-                    empty_index !== empty_array?.length - 1 ? "border-r" : ""
-                  } border-zinc-300 dark:border-zinc-600`}
-                ></div>
-              ))}
+            {renderEmptyCells(character_list)}
           </div>
         </div>
       );
