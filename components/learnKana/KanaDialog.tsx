@@ -16,9 +16,7 @@ const KanaDialog: React.FC<KanaDialogProps> = (props) => {
   const audio_ref = useRef<HTMLAudioElement>(null);
 
   const onPlayHandler = () => {
-    if (audio_ref && audio_ref.current) {
-      audio_ref.current.play();
-    }
+    audio_ref?.current?.play();
   };
 
   return (
