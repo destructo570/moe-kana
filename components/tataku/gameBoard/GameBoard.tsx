@@ -25,6 +25,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
 }) => {
   const [current_board, setCurrentBoard] = useState<Board>();
   const [selected_chars, setSelectedChars] = useState<Kana[]>([]);
+  const selected_mode = current_session?.settings?.selected_mode;
   const audio_ref = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
   return (
     <Card className="dark:bg-zinc-800 dark:border-none flex flex-col items-center p-4 mt-4">
       <div className="flex justify-end w-full">
-        {current_session?.settings?.selected_mode === TatakuMode.NORMAL && (
+        {selected_mode === TatakuMode.NORMAL && (
           <Button
             variant="ghost"
             size="icon"
@@ -92,7 +93,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
           hidden
         />
       </div>
-      {current_session?.settings?.selected_mode === TatakuMode.NORMAL ? (
+      {selected_mode === TatakuMode.NORMAL ? (
         <h3 className="text-8xl font-medium mt-14">
           {current_board?.answer?.char_jp}
         </h3>
@@ -114,14 +115,12 @@ const GameBoard: React.FC<GameBoardProps> = ({
               onClick={onClickHandler.bind(null, kana)}
               size="icon"
               className={`h-16 w-full ${
-                current_session?.settings?.selected_mode === TatakuMode.NORMAL
+                selected_mode === TatakuMode.NORMAL
                   ? "text-xl"
                   : "text-2xl font-bold"
               }`}
             >
-              {current_session?.settings?.selected_mode === TatakuMode.NORMAL
-                ? kana.char
-                : kana.char_jp}
+              {selected_mode === TatakuMode.NORMAL ? kana.char : kana.char_jp}
             </Button>
           ))}
       </div>
