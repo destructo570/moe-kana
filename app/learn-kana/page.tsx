@@ -6,10 +6,10 @@ import KatakanaContent from "./katakana.mdx";
 
 const page = () => {
   return (
-    <>
+    <section className="sm:px-40 px-30">
       <HiraganaContent />
       <KatakanaContent />
-    </>
+    </section>
   );
 };
 
