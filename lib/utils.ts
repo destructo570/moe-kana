@@ -8,6 +8,7 @@ import {
 } from "./constants";
 import { Kana } from "@/models/interfaces/Kana.interface";
 import { KanaGroup } from "@/models/interfaces/KanaGroup.interface";
+import { Board } from "@/models/interfaces/Board.interface";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,7 +24,6 @@ export const generateSelectedCharList = (kana_group_list: KanaGroup[]) => {
   return result;
 };
 
-// export function getRandomNumber(limit: number): number;
 export function getRandomNumber(
   limit: number,
   count?: number,
@@ -82,3 +82,19 @@ export function getSelectedOptions(options: number[]) {
 export function getClonedObject(obj: object) {
   return JSON.parse(JSON.stringify(obj));
 }
+
+export const generateNewBoardData = (selected_chars: Kana[]): Board => {
+  let answer_index = getRandomNumber(selected_chars?.length);
+  let options_index_list: number[] = getRandomNumber(
+    selected_chars?.length,
+    9,
+    answer_index as number
+  ) as number[];
+  let options: Kana[] = [];
+  options = options_index_list.map((num) => selected_chars[num]);
+
+  return {
+    answer: selected_chars[answer_index as number],
+    options,
+  };
+};

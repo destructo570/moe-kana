@@ -1,21 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { generateSelectedCharList, getRandomNumber } from "@/lib/utils";
+import { generateNewBoardData, generateSelectedCharList } from "@/lib/utils";
 import { GameSession } from "@/models/interfaces/GameSession.interface";
 import React, { useEffect, useRef, useState } from "react";
 import { Volume1, Volume2 } from "lucide-react";
 import { Kana } from "@/models/interfaces/Kana.interface";
 import { TatakuMode } from "@/lib/constants";
+import { Board } from "@/models/interfaces/Board.interface";
 
 interface GameBoardProps {
   updateSession: (is_right_answer: boolean) => void;
   current_session: GameSession;
   is_reset: boolean;
-}
-
-interface Board {
-  answer: Kana;
-  options: Kana[];
 }
 
 const GameBoard: React.FC<GameBoardProps> = ({
@@ -29,39 +25,24 @@ const GameBoard: React.FC<GameBoardProps> = ({
   const audio_ref = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    setSelectedChars(
-      generateSelectedCharList(current_session.settings.selected_options)
-    );
+    const selected_options = current_session.settings.selected_options;
+    const chars = generateSelectedCharList(selected_options);
+    setSelectedChars(chars);
   }, [current_session.settings.selected_options]);
 
   useEffect(() => {
-    if (selected_chars?.length) {
-      createNewBoard(selected_chars?.length);
-    }
+    createNewBoard();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected_chars, is_reset]);
 
-  const createNewBoard = (length: number) => {
-    if (!length) return;
-
-    let answer_index = getRandomNumber(length);
-    let options_index_list: number[] = getRandomNumber(
-      length,
-      9,
-      answer_index as number
-    ) as number[];
-    let options: Kana[] = [];
-    options = options_index_list.map((num) => selected_chars[num]);
-
-    setCurrentBoard({
-      answer: selected_chars[answer_index as number],
-      options,
-    });
+  const createNewBoard = () => {
+    if (!selected_chars?.length) return;
+    setCurrentBoard(generateNewBoardData(selected_chars));
   };
 
   const onClickHandler = (selected_kana: Kana) => {
     if (selected_kana.char === current_board?.answer?.char.toLowerCase()) {
-      createNewBoard(selected_chars?.length);
+      createNewBoard();
       updateSession(true);
     } else {
       updateSession(false);
