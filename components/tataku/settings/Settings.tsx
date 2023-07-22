@@ -22,6 +22,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { SelectedSettings } from "@/models/interfaces/SeletedSettings.interface";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface SettingsProps {
   onConfirm: (selected_settings: SelectedSettings) => void;
@@ -109,58 +110,27 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="dark:bg-zinc-800 dark:border-none"
+        className="dark:bg-zinc-800 dark:border-none h-5/6 w-5/6 sm:w-full rounded-lg"
         close_btn={false}
       >
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
         </DialogHeader>
-        <DialogDescription>
-          <h3 className="mt-2">Selected Mode</h3>
-          <RadioGroup
-            defaultValue={selected_mode}
-            className="ml-2"
-            onValueChange={onModeChange}
-          >
-            {DEFAULT_GAME_MODE_STATE.map((item, index) => {
-              return (
-                <>
-                  <div key={item.id} className="items-top flex space-x-2 p-3">
-                    <RadioGroupItem
-                      id={item.id}
-                      value={item.value}
-                      className="mt-1"
-                    />
-                    <div className="grid gap-1.5 leading-none">
-                      <Label
-                        htmlFor={item.id}
-                        className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
-                      >
-                        {item.label}
-                      </Label>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                  {index < DEFAULT_GAME_MODE_STATE.length - 1 && (
-                    <Separator className="dark:bg-zinc-700" />
-                  )}
-                </>
-              );
-            })}
-          </RadioGroup>
-          <div className="mt-10">
-            <h3>Selected options</h3>
-            <div className="ml-4">
-              {selected_options.map((item, index) => {
+        <ScrollArea className="p-0">
+          <DialogDescription>
+            <h3 className="mt-2">Selected Mode</h3>
+            <RadioGroup
+              defaultValue={selected_mode}
+              className="ml-2"
+              onValueChange={onModeChange}
+            >
+              {DEFAULT_GAME_MODE_STATE.map((item, index) => {
                 return (
                   <>
                     <div key={item.id} className="items-top flex space-x-2 p-3">
-                      <Checkbox
+                      <RadioGroupItem
                         id={item.id}
-                        onCheckedChange={onCheckboxChange.bind(null, item.id)}
-                        checked={item.checked}
+                        value={item.value}
                         className="mt-1"
                       />
                       <div className="grid gap-1.5 leading-none">
@@ -175,23 +145,59 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
                         </p>
                       </div>
                     </div>
-                    {index < selected_options.length - 1 && (
+                    {index < DEFAULT_GAME_MODE_STATE.length - 1 && (
                       <Separator className="dark:bg-zinc-700" />
                     )}
                   </>
                 );
               })}
-              {isConfirmDisabled(selected_options) ? (
-                <Alert className="dark:bg-zinc-700 bg-zinc-100 border-none mt-2">
-                  <Info className="h-4 w-4 " />
-                  <AlertDescription>
-                    Please select atleast one group.
-                  </AlertDescription>
-                </Alert>
-              ) : null}
+            </RadioGroup>
+            <div className="mt-10">
+              <h3>Selected options</h3>
+              <div className="ml-4">
+                {selected_options.map((item, index) => {
+                  return (
+                    <>
+                      <div
+                        key={item.id}
+                        className="items-top flex space-x-2 p-3"
+                      >
+                        <Checkbox
+                          id={item.id}
+                          onCheckedChange={onCheckboxChange.bind(null, item.id)}
+                          checked={item.checked}
+                          className="mt-1"
+                        />
+                        <div className="grid gap-1.5 leading-none">
+                          <Label
+                            htmlFor={item.id}
+                            className="text-sm font-medium dark:text-zinc-50 text-zinc-900"
+                          >
+                            {item.label}
+                          </Label>
+                          <p className="text-sm text-muted-foreground">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                      {index < selected_options.length - 1 && (
+                        <Separator className="dark:bg-zinc-700" />
+                      )}
+                    </>
+                  );
+                })}
+                {isConfirmDisabled(selected_options) ? (
+                  <Alert className="dark:bg-zinc-700 bg-zinc-100 border-none mt-2">
+                    <Info className="h-4 w-4 " />
+                    <AlertDescription>
+                      Please select atleast one group.
+                    </AlertDescription>
+                  </Alert>
+                ) : null}
+              </div>
             </div>
-          </div>
-        </DialogDescription>
+          </DialogDescription>
+        </ScrollArea>
         <DialogFooter>
           <Button
             onClick={onConfirmHandler}
