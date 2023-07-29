@@ -11,8 +11,8 @@ const About = () => {
       <Card className="w-full flex flex-col justify-center p-6 dark:bg-zinc-800 dark:border-none">
         <div className="w-full flex flex-col items-center gap-3 justify-center">
           <Image
-            src="https://github.com/destructo570.png"
-            alt="@shadcn"
+            src="/dev_img.jpg"
+            alt=""
             height={100}
             width={100}
             className="rounded-full"
