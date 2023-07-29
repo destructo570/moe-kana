@@ -11,21 +11,16 @@ import { InfoIcon, Joystick, Menu } from "lucide-react";
 import { RouteItem } from "@/models/interfaces/Route.interface";
 import { Toggle } from "../ui/toggle";
 import { GraduationCap } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 interface SideMenuProps {}
 
 const SideMenu: React.FC<SideMenuProps> = () => {
-  const router = useRouter();
   const pathname = usePathname();
 
   const [is_open, setIsOpen] = useState(false);
-
-  const onRouteClick = (item: RouteItem) => {
-    router.push(item.route);
-    toggleOpenState();
-  };
 
   const toggleOpenState = () => {
     setIsOpen((prev) => !prev);
@@ -72,13 +67,16 @@ const SideMenu: React.FC<SideMenuProps> = () => {
               <Toggle
                 key={`route_${idx}`}
                 pressed={pathname.startsWith(item.route)}
-                onPressedChange={onRouteClick.bind(null, item)}
                 className=" dark:data-[state=on]:bg-zinc-700"
               >
-                <div className="w-full text-left flex gap-3 items-center">
+                <Link
+                  className="w-full text-left flex gap-3 items-center"
+                  href={item.route}
+                  onClick={toggleOpenState}
+                >
                   <span>{item.icon}</span>
                   <span>{item.title}</span>
-                </div>
+                </Link>
               </Toggle>
             );
           })}
