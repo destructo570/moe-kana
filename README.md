@@ -4,7 +4,7 @@ An open-source app built for helping people learn and practice hiragana and kata
 
 This was a little side project to explore everything new that NextJs 13 offers.
 
-### [🚀 View Live](https://moe-kana.vercel.app/home)
+### [🚀 View Live](https://moe-kana.vercel.app/)
 
 <details>
   <summary><h3>🌈Screenshots</h3></summary>
