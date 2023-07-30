@@ -10,7 +10,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   const { theme, setTheme } = useTheme();
 
   const changeThemeHandler = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
