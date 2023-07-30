@@ -121,7 +121,6 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
             <h3 className="mt-2">Selected Mode</h3>
             <RadioGroup
               defaultValue={selected_mode}
-              className="ml-2"
               onValueChange={onModeChange}
             >
               {DEFAULT_GAME_MODE_STATE.map((item, index) => {
@@ -154,7 +153,7 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
             </RadioGroup>
             <div className="mt-10">
               <h3>Selected options</h3>
-              <div className="ml-4">
+              <div>
                 {selected_options.map((item, index) => {
                   return (
                     <>
