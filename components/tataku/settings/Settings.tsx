@@ -118,7 +118,7 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
         </DialogHeader>
         <ScrollArea className="p-0">
           <DialogDescription>
-            <h3 className="mt-2">Selected Mode</h3>
+            <h3>Selected Mode</h3>
             <RadioGroup
               defaultValue={selected_mode}
               onValueChange={onModeChange}
