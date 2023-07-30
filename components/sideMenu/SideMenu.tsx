@@ -13,14 +13,20 @@ import { Toggle } from "../ui/toggle";
 import { GraduationCap } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface SideMenuProps {}
 
 const SideMenu: React.FC<SideMenuProps> = () => {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [is_open, setIsOpen] = useState(false);
+
+  const navigateTo = (item: RouteItem) => {
+    router.push(item.route);
+    toggleOpenState();
+  };
 
   const toggleOpenState = () => {
     setIsOpen((prev) => !prev);
@@ -67,16 +73,13 @@ const SideMenu: React.FC<SideMenuProps> = () => {
               <Toggle
                 key={`route_${idx}`}
                 pressed={pathname.startsWith(item.route)}
+                onClick={navigateTo.bind(null, item)}
                 className=" dark:data-[state=on]:bg-zinc-700"
               >
-                <Link
-                  className="w-full text-left flex gap-3 items-center"
-                  href={item.route}
-                  onClick={toggleOpenState}
-                >
+                <div className="w-full text-left flex gap-3 items-center">
                   <span>{item.icon}</span>
                   <span>{item.title}</span>
-                </Link>
+                </div>
               </Toggle>
             );
           })}
