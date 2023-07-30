@@ -126,7 +126,10 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
               {DEFAULT_GAME_MODE_STATE.map((item, index) => {
                 return (
                   <>
-                    <div key={item.id} className="items-top flex space-x-2 p-3">
+                    <div
+                      key={item.id}
+                      className="items-top flex space-x-2 pt-4"
+                    >
                       <RadioGroupItem
                         id={item.id}
                         value={item.value}
@@ -159,7 +162,7 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
                     <>
                       <div
                         key={item.id}
-                        className="items-top flex space-x-2 p-3"
+                        className="items-top flex space-x-2 pt-4"
                       >
                         <Checkbox
                           id={item.id}
