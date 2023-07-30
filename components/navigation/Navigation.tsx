@@ -10,16 +10,13 @@ const Navigation: React.FC<NavigationProps> = () => {
   const { theme, setTheme } = useTheme();
 
   const changeThemeHandler = () => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
+    setTheme(theme === "dark" ? "light" : "dark");
   };
+
   return (
     <nav className="flex justify-between py-4 px-6">
       <SideMenu />
-      <Toggle onClick={changeThemeHandler} className="dark:bg-zinc-800 ">
+      <Toggle onPressedChange={changeThemeHandler} className="dark:bg-zinc-800">
         <MoonStar className="h-6 w-6" />
       </Toggle>
     </nav>
