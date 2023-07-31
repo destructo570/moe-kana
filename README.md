@@ -4,6 +4,10 @@ An open-source app built for helping people learn and practice hiragana and kata
 
 This was a little side project to explore everything new that NextJs 13 offers.
 
+You can practice kana by 2 ways in the app:
+1. A Romaji character will be shown and you need to select the correct latin translation.
+2. Hear the japanese pronunciation and select the correct romaji translation.
+
 ### [🚀 View Live](https://moekana.destructo.dev)
 
 <details>
