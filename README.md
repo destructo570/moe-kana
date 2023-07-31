@@ -9,10 +9,10 @@ This was a little side project to explore everything new that NextJs 13 offers.
 <details>
   <summary><h3>🌈Screenshots</h3></summary>
   
-  ![alt text](https://imgur.com/WNHdOFY.png)
-  ![alt text](https://imgur.com/z5GvyXL.png)
-  ![alt text](https://imgur.com/XUYG21E.png)
-  ![alt text](https://imgur.com/tqsljl2.png)
+  ![alt text](https://imgur.com/UONj3E9.png)
+  ![alt text](https://imgur.com/SiCxJ5U.png)
+  ![alt text](https://imgur.com/nolQT5h.png)
+  ![alt text](https://imgur.com/c7gJgce.png)
   
 </details>
 
