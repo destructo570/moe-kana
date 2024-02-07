@@ -110,7 +110,7 @@ const Settings: React.FC<SettingsProps> = ({ onConfirm }) => {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="dark:bg-zinc-800 dark:border-none h-5/6 w-5/6 sm:w-full rounded-lg"
+        className="dark:bg-zinc-800 dark:border-none w-5/6 sm:w-full rounded-lg"
         close_btn={false}
       >
         <DialogHeader>
