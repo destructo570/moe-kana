@@ -14,8 +14,9 @@ import { GraduationCap } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-interface SideMenuProps {}
+interface SideMenuProps { }
 
 const SideMenu: React.FC<SideMenuProps> = () => {
   const pathname = usePathname();
@@ -70,17 +71,17 @@ const SideMenu: React.FC<SideMenuProps> = () => {
         <div className="grid gap-4 py-4 mt-10">
           {ROUTES_LIST?.map((item, idx) => {
             return (
-              <Toggle
-                key={`route_${idx}`}
-                pressed={pathname.startsWith(item.route)}
-                onClick={navigateTo.bind(null, item)}
-                className=" dark:data-[state=on]:bg-zinc-700"
+              <Link
+                href={item.route}
+                onClick={() => {
+                  toggleOpenState();
+                }}
               >
                 <div className="w-full text-left flex gap-3 items-center">
                   <span>{item.icon}</span>
                   <span>{item.title}</span>
                 </div>
-              </Toggle>
+              </Link>
             );
           })}
         </div>
