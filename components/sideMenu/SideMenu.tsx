@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useState } from "react";
 import {
   Sheet,
@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface SideMenuProps { }
 
@@ -23,11 +24,6 @@ const SideMenu: React.FC<SideMenuProps> = () => {
   const router = useRouter();
 
   const [is_open, setIsOpen] = useState(false);
-
-  const navigateTo = (item: RouteItem) => {
-    router.push(item.route);
-    toggleOpenState();
-  };
 
   const toggleOpenState = () => {
     setIsOpen((prev) => !prev);
@@ -50,6 +46,10 @@ const SideMenu: React.FC<SideMenuProps> = () => {
       icon: <InfoIcon className="h-5 w-5" />,
     },
   ];
+  
+  let isActive = (route='') => {
+    return pathname?.includes(route);
+  }
 
   return (
     <Sheet open={is_open} onOpenChange={toggleOpenState}>
@@ -73,6 +73,7 @@ const SideMenu: React.FC<SideMenuProps> = () => {
             return (
               <Link
                 href={item.route}
+                className={cn({'dark:bg-zinc-600 bg-zinc-200 px-3 py-2 rounded-lg' : isActive(item.route)})}
                 onClick={() => {
                   toggleOpenState();
                 }}
